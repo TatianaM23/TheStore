@@ -90,3 +90,31 @@ section {
   button:hover {
     background-color: #45a049;
   }
+
+
+  h2 {
+    color: #333;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+strong {
+    color: #007BFF;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+}
