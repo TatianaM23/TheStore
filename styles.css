@@ -33,5 +33,17 @@ nav{
 ul li{
     display: inline-block;
     padding: 0px 20px;
+
+}
+
+ul {
     
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-weight: bold;
+
 }
