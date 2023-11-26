@@ -49,7 +49,7 @@ ul {
 }
 
 /* Estilos generales para el cuerpo del formulario */
-body {
+section {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     display: flex;
