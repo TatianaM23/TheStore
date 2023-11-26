@@ -57,6 +57,7 @@ form {
     background: url(fondo.jpg)no-repeat;
     background-position: center;
     background-size: cover;
+    margin: center;
 
 }
 
@@ -69,5 +70,5 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
