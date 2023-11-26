@@ -72,3 +72,10 @@ form {
     align-items: center;
 
 }
+
+.contenedor h2 {
+
+    font-size: 2.3rem;
+    color: aliceblue;
+    text-align: center;
+}
