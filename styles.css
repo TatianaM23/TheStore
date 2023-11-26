@@ -93,11 +93,12 @@ section {
 
 
 
-  h2 {
-    color: #333;
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
+ .h2-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
     
 }
 
