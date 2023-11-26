@@ -57,5 +57,17 @@ form {
     background: url(fondo.jpg)no-repeat;
     background-position: center;
     background-size: cover;
+
+}
+
+.contenedor {
+    position: relative;
+    width: 400px;
+    background-color: aqua;
+    border: 2px solid rgba(255, 255, 255, .6);
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
