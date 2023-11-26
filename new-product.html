@@ -36,5 +36,23 @@
 			</form>
 		</div>
 	</section>
+	<script>
+		function mostrarInformacion() {
+		  var name = document.getElementById("Product").value;
+		  var price = document.getElementById("Price").value;
+		  var imagen = document.getElementById("Image").value;
+	  
+		  
+		  var resultadoContainer = document.getElementById("resultado");
+		  resultadoContainer.innerHTML = "<h2>Información del formulario:</h2>" +
+			"<p>name: " + product + "</p>" +
+			"<p>price" + price + "</p>";
+			"<p>imagen" + imagen + "</p>";
+	  
+		  
+		  document.getElementById("miFormulario").reset();
+		}
+	  </script>
+
 </body>
 </html>
