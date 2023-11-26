@@ -95,6 +95,7 @@ section {
   h2 {
     color: #333;
     align-items: center;
+    justify-content: space-between;
 }
 
 p {
