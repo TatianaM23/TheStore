@@ -95,7 +95,9 @@ section {
   h2 {
     color: #333;
     align-items: center;
+    display: flex;
     justify-content: space-between;
+    height: 100vh;
 }
 
 p {
