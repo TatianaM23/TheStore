@@ -91,16 +91,7 @@ section {
     background-color: #45a049;
   }
 
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
+
 
   h2 {
     color: #333;
