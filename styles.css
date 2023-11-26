@@ -17,7 +17,7 @@ body {
 
 }
 
-/*Navegacion*/  
+ 
 
 nav{
     display: flex;
@@ -48,7 +48,7 @@ ul {
 
 }
 
-/* Estilos generales para el cuerpo del formulario */
+
 section {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -58,7 +58,7 @@ section {
     height: 100vh;
   }
   
-  /* Estilos para el contenedor del formulario */
+  
   .form-container {
     background-color: #fff;
     border-radius: 8px;
@@ -67,7 +67,7 @@ section {
     width: 300px;
   }
   
-  /* Estilos para los campos de entrada (input) */
+  
   input {
     width: 100%;
     padding: 10px;
@@ -77,7 +77,7 @@ section {
     box-sizing: border-box;
   }
   
-  /* Estilos para el botón de enviar */
+
   button {
     background-color: #4caf50;
     color: #fff;
