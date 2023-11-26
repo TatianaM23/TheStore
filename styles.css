@@ -37,7 +37,7 @@ ul li{
 }
 
 ul {
-    
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -46,4 +46,9 @@ ul {
     padding-right: 5%;
     font-weight: bold;
 
+}
+
+img {
+    width: 200px;
+    height: 250px;
 }
