@@ -4,69 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Product</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Product</title>
+	<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <ul>
-        <img src="imagenes/Logo.png" alt="Logo de la empresa">
-        <li></li><a href="index.html">Home</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Car</a></li>
-        <li><a href="#">Login</a></li>
-    </ul>
+    	<img src="imagenes/Logo.png" alt="Logo de la empresa">
+
+	
+		<li></li><a href="index.html">Home</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">Car</a></li>
+		<li><a href="#">Login</a></li>
+	</ul>
     <section>
-        <div class="contenedor"> 
-            <form id="productForm" onsubmit="mostrarInformacion()">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name">
-
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="price">
-
-                <label for="inventory">Inventory:</label>
-                <input type="number" id="inventory" name="inventory">
-
-                <label for="imagen">Seleccionar imagen:</label>
-                <input type="file" id="imagen" name="imagen" accept="image/*" required>
-
-                <input type="submit" value="Create Product">
-            </form>
-
-            <div id="result"></div>
-        </div>
-    </section>
-
-    <script>
-        function mostrarInformacion() {
-            var name = document.getElementById('name').value;
-            var price = document.getElementById('price').value;
-            var inventory = document.getElementById('inventory').value;
-            var imageInput = document.getElementById('imagen');
-            var imageDisplay = document.getElementById('result');
-
-            // Leer la imagen seleccionada
-            var file = imageInput.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                // Mostrar la información y la imagen en la página
-                imageDisplay.innerHTML = `
-                    <h2>Información del Producto:</h2>
-                    <p><strong>Name:</strong> ${name}</p>
-                    <p><strong>Price:</strong> ${price}</p>
-                    <p><strong>Inventory:</strong> ${inventory}</p>
-                    <p><strong>Imagen:</strong></p>
-                    <img src="${e.target.result}" alt="Imagen del Producto">
-                `;
-            };
-
-            // Leer el contenido de la imagen como URL
-            reader.readAsDataURL(file);
-
-            // Evitar que el formulario se envíe normalmente
-            event.preventDefault();
-        }
-    </script>
-</body>
-</html>
+        <script>
+            function mostrarInformacion() {
+                var name = document.getElementById('name').value;
+                var price = document.getElementById('price').value;
+                var inventory = document.getElementById('inventory').value;
+                var imageInput = document.getElementById('imagen');
+                var imageDisplay = document.getElementById('result');
+    
+                // Leer la imagen seleccionada
+                var file = imageInput.files[0];
+                var reader = new FileReader();
+    
+                reader.onload = function(e) {
+                    // Mostrar la información y la imagen en la página
+                    imageDisplay.innerHTML = `
+                        <h2>Información del Producto:</h2>
+                        <p><strong>Name:</strong> ${name}</p>
+                        <p><strong>Price:</strong> ${price}</p>
+                        <p><strong>Inventory:</strong> ${inventory}</p>
+                        <p><strong>Imagen:</strong></p>
+                        <img src="${e.target.result}" alt="Imagen del Producto">
+                    `;
+                };
+    
+                // Leer el contenido de la imagen como URL
+                reader.readAsDataURL(file);
+    
+                // Evitar que el formulario se envíe normalmente
+                event.preventDefault();
+            }
+        </script>
+    </body>
+    </html>
