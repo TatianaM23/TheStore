@@ -38,6 +38,13 @@
                 <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
                <hr>
             `;
+            <button onclick="eliminarProductos()">Eliminar Productos</button>
+
+        }
+
+        function eliminarProductos() {
+            localStorage.removeItem('products');
+            mostrarProductos();
         }
     </script>
 </body>
