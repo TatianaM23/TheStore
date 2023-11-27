@@ -20,45 +20,14 @@
 	</ul>
     <section>
     <div class="contenedor">
-        <h2>Información del Producto:</h2>
-        <p><strong>Name:</strong> <?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?></p>
-        <p><strong>Price:</strong> <?php echo isset($_POST['price']) ? $_POST['price'] : ''; ?></p>
-        <p><strong>Inventory:</strong> <?php echo isset($_POST['inventory']) ? $_POST['inventory'] : ''; ?></p>
-        <p><strong>Imagen:</strong> <img src="<?php echo isset($_FILES['imagen']['name']) ? $_FILES['imagen']['name'] : ''; ?>" alt="Imagen del Producto"></p>
-    </div>
+    <h2>Información del Producto:
+
+    <p><strong>Name:</strong> <?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?></p>
+    <p><strong>Price:</strong> <?php echo isset($_POST['price']) ? $_POST['price'] : ''; ?></p>
+    <p><strong>Inventory:</strong> <?php echo isset($_POST['inventory']) ? $_POST['inventory'] : ''; ?></p>
+    <p><strong>Imagen:</strong> <img src="<?php echo isset($_POST['image']) ? $_POST['image'] : ''; ?>" alt="Imagen del Producto"></p>
+    </div>   
+    </h2>
     </section>
-    <script>
-        function mostrarInformacion() {
-            var name = document.getElementById('name').value;
-            var price = document.getElementById('price').value;
-            var inventory = document.getElementById('inventory').value;
-            var imageInput = document.getElementById('imagen');
-            var imageDisplay = document.getElementById('result');
-
-            // Leer la imagen seleccionada
-            var file = imageInput.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                // Mostrar la información y la imagen en la página
-                imageDisplay.innerHTML = `
-                    <h2>Información del Producto:</h2>
-                    <p><strong>Name:</strong> ${name}</p>
-                    <p><strong>Price:</strong> ${price}</p>
-                    <p><strong>Inventory:</strong> ${inventory}</p>
-                    <p><strong>Imagen:</strong></p>
-                    <img src="${e.target.result}" alt="Imagen del Producto">
-                `;
-            };
-
-            // Leer el contenido de la imagen como URL
-            reader.readAsDataURL(file);
-
-            // Evitar que el formulario se envíe normalmente
-            event.preventDefault();
-        }
-    </script>
-</body>
-</html>
 </body>
 </html>
