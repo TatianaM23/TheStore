@@ -4,41 +4,87 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product</title>
+    <title>New Product</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <ul>
         <img src="imagenes/Logo.png" alt="Logo de la empresa">
-        <li></li><a href="index.html">Home</a></li>
-        <li><a href="#">Products</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Productos.html">Products</a></li>
         <li><a href="#">Car</a></li>
         <li><a href="#">Login</a></li>
     </ul>
     <section>
-        <div class="contenedor">
-            <h2>Información de Productos:</h2>
-            <div id="result"></div>
+        <div class="contenedor"> 
+            <form onsubmit="mostrarInformacion()">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price">
+
+                <label for="inventory">Inventory:</label>
+                <input type="number" id="inventory" name="inventory">
+
+                <label for="imagen">Seleccionar imagen:</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*" required>
+
+                <input type="submit" value="Create Product">
+            </form>
+
+            <div id="productList"></div>
+            <button onclick="eliminarProductos()">Eliminar Productos</button>
         </div>
     </section>
 
     <script>
-       
-        var storedProducts = localStorage.getItem('products');
-        var products = storedProducts ? JSON.parse(storedProducts) : [];
+        function mostrarInformacion() {
+            var name = document.getElementById('name').value;
+            var price = document.getElementById('price').value;
+            var inventory = document.getElementById('inventory').value;
+            var image = document.getElementById('imagen').value;
 
-        var resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = '';
-        for (var i = 0; i < products.length; i++) {
-            resultDiv.innerHTML += `
-                <h2>Producto:</h2>
-                <p><strong>Name:</strong> ${products[i].name}</p>
-                <p><strong>Price:</strong> ${products[i].price}</p>
-                <p><strong>Inventory:</strong> ${products[i].inventory}</p>
-                <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
-               <hr>
-            `;
+            var storedProducts = localStorage.getItem('products');
+            var products = storedProducts ? JSON.parse(storedProducts) : [];
+
+            products.push({
+                name: name,
+                price: price,
+                inventory: inventory,
+                image: image
+            });
+
+            localStorage.setItem('products', JSON.stringify(products));
+
+            mostrarProductos();
+        }
+
+        function mostrarProductos() {
+            var storedProducts = localStorage.getItem('products');
+            var products = storedProducts ? JSON.parse(storedProducts) : [];
+            var productListDiv = document.getElementById('productList');
+
+            productListDiv.innerHTML = '';
+
+            products.forEach(function(product) {
+                var productDiv = document.createElement('div');
+                productDiv.innerHTML = `
+                    <p>Name: ${product.name}</p>
+                    <p>Price: ${product.price}</p>
+                    <p>Inventory: ${product.inventory}</p>
+                    <img src="${product.image}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
+                    <hr>
+                `;
+                productListDiv.appendChild(productDiv);
+            });
+        }
+
+        function eliminarProductos() {
+            localStorage.removeItem('products');
+            mostrarProductos();
         }
     </script>
 </body>
 </html>
+
