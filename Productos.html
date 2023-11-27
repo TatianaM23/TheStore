@@ -23,11 +23,10 @@
     </section>
 
     <script>
-        // Obtener datos almacenados
+       
         var storedProducts = localStorage.getItem('products');
         var products = storedProducts ? JSON.parse(storedProducts) : [];
 
-        // Mostrar información
         var resultDiv = document.getElementById('result');
         resultDiv.innerHTML = '';
         for (var i = 0; i < products.length; i++) {

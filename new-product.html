@@ -42,11 +42,9 @@
             var inventory = document.getElementById('inventory').value;
             var image = document.getElementById('imagen').value;
 
-            // Obtener datos almacenados previamente
             var storedProducts = localStorage.getItem('products');
             var products = storedProducts ? JSON.parse(storedProducts) : [];
 
-            // Agregar nuevo producto
             products.push({
                 name: name,
                 price: price,
@@ -54,7 +52,6 @@
                 image: image
             });
 
-            // Almacenar datos actualizados
             localStorage.setItem('products', JSON.stringify(products));
         }
     </script>
