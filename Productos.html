@@ -10,7 +10,7 @@
 <body>
     <ul>
         <img src="imagenes/Logo.png" alt="Logo de la empresa">
-        <li></li><a href="index.html">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="#">Products</a></li>
         <li><a href="#">Car</a></li>
         <li><a href="#">Login</a></li>
@@ -23,12 +23,12 @@
     </section>
 
     <script>
-       
         var storedProducts = localStorage.getItem('products');
         var products = storedProducts ? JSON.parse(storedProducts) : [];
 
         var resultDiv = document.getElementById('result');
         resultDiv.innerHTML = '';
+
         for (var i = 0; i < products.length; i++) {
             resultDiv.innerHTML += `
                 <h2>Producto:</h2>
@@ -36,18 +36,34 @@
                 <p><strong>Price:</strong> ${products[i].price}</p>
                 <p><strong>Inventory:</strong> ${products[i].inventory}</p>
                 <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
-                <input type="submit" value="Eliminar">
-               <hr>
+                <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
+                <hr>
             `;
-            
-
         }
-        
 
+        function eliminarProducto(index) {
+            // Elimina el producto en la posición 'index'
+            products.splice(index, 1);
+            // Actualiza el almacenamiento local
+            localStorage.setItem('products', JSON.stringify(products));
+            // Vuelve a mostrar la información actualizada
+            mostrarProductos();
+        }
 
-        function eliminarProductos() {
-            localStorage.removeItem('products');
-            removeItem(products);
+        function mostrarProductos() {
+            resultDiv.innerHTML = '';
+
+            for (var i = 0; i < products.length; i++) {
+                resultDiv.innerHTML += `
+                    <h2>Producto:</h2>
+                    <p><strong>Name:</strong> ${products[i].name}</p>
+                    <p><strong>Price:</strong> ${products[i].price}</p>
+                    <p><strong>Inventory:</strong> ${products[i].inventory}</p>
+                    <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
+                    <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
+                    <hr>
+                `;
+            }
         }
     </script>
 </body>
