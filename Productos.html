@@ -36,30 +36,18 @@
                 <p><strong>Price:</strong> ${products[i].price}</p>
                 <p><strong>Inventory:</strong> ${products[i].inventory}</p>
                 <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
-                <input type="submit" value="Eliminar"> 
-
+                <input type="submit" value="Eliminar">
                <hr>
             `;
             
 
         }
         
-        products.forEach(function(product) {
-                var productDiv = document.createElement('div');
-                productDiv.innerHTML = `
-                    <p>Name: ${product.name}</p>
-                    <p>Price: ${product.price}</p>
-                    <p>Inventory: ${product.inventory}</p>
-                    <img src="${product.image}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
-                    <hr>
-                `;
-                productListDiv.appendChild(productDiv);
-            });
-        
+
 
         function eliminarProductos() {
             localStorage.removeItem('products');
-            mostrarProductos();
+            removeItem(products);
         }
     </script>
 </body>
