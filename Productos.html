@@ -43,60 +43,12 @@
 
         }
         
-        <script>
-        function mostrarInformacion() {
-            var name = document.getElementById('name').value;
-            var price = document.getElementById('price').value;
-            var inventory = document.getElementById('inventory').value;
-            var image = document.getElementById('imagen').value;
 
-            var storedProducts = localStorage.getItem('products');
-            var products = storedProducts ? JSON.parse(storedProducts) : [];
-
-            products.push({
-                name: name,
-                price: price,
-                inventory: inventory,
-                image: image
-            });
-
-            localStorage.setItem('products', JSON.stringify(products));
-
-            mostrarProductos();
-        }
-
-        function mostrarProductos() {
-            var storedProducts = localStorage.getItem('products');
-            var products = storedProducts ? JSON.parse(storedProducts) : [];
-            var productListDiv = document.getElementById('productList');
-
-            productListDiv.innerHTML = '';
-
-            products.forEach(function(product) {
-                var productDiv = document.createElement('div');
-                productDiv.innerHTML = `
-                    <p>Name: ${product.name}</p>
-                    <p>Price: ${product.price}</p>
-                    <p>Inventory: ${product.inventory}</p>
-                    <img src="${product.image}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
-                    <hr>
-                `;
-                productListDiv.appendChild(productDiv);
-            });
-        }
 
         function eliminarProductos() {
             localStorage.removeItem('products');
-            mostrarProductos();
+            removeItem(products);
         }
-
-        function eliminarInformacion() {
-            // Puedes agregar aquí la lógica para eliminar cualquier otra información almacenada
-            // En este ejemplo, eliminaremos solo los productos
-            localStorage.removeItem('products');
-            mostrarProductos();
-        }
-    
     </script>
 </body>
 </html>
