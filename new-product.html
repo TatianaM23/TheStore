@@ -44,12 +44,18 @@
             var name = document.getElementById('name').value;
             var price = document.getElementById('price').value;
             var inventory = document.getElementById('inventory').value;
-            var image = document.getElementById('imagen').value;
+            var imageInput = document.getElementById('imagen');
+            var image = imageInput.files[0];
 
             if (!name || !price || !inventory || !image) {
                 mostrarNotificacion("Todos los campos son requeridos");
                 return;
             }
+
+            var imageExtension = image.name.split('.').pop().toLowerCase();
+            var imageName = Date.now() + '.' + imageExtension;
+            var reader = new FileReader();
+            reader.onload = function (e) {
 
             var storedProducts = localStorage.getItem('products');
             var products = storedProducts ? JSON.parse(storedProducts) : [];
@@ -67,6 +73,8 @@
 
         limpiarCampos();
         }
+
+        reader.readAsDataURL(image);
 
         function limpiarCampos() {
             document.getElementById('name').value = '';
