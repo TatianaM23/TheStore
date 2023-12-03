@@ -7,6 +7,8 @@
     <title>New Product</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
+
 <body>
     <ul>
         <img src="imagenes/Logo.png" alt="Logo de la empresa">
@@ -45,7 +47,7 @@
             var image = document.getElementById('imagen').value;
 
             if (!name || !price || !inventory || !image) {
-                mostrarMensajeError("Todos los campos son requeridos");
+                mostrarNotificacion("Todos los campos son requeridos");
                 return;
             }
 
@@ -63,15 +65,11 @@
             mostrarNotificacion("Producto creado exitosamente");
         }
 
-        function mostrarMensajeError(message) {
+        function mostrarNotificacion(message) {
             alert(message);
         }
     </script>
 </body>
 </html>
-
-
-
-
 
 
