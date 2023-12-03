@@ -45,7 +45,26 @@
     </section>
 
     <script>
-        function validarFormulario() {
+        function mostrarInformacion() {
+            var name = document.getElementById('name').value;
+            var price = document.getElementById('price').value;
+            var inventory = document.getElementById('inventory').value;
+            var image = document.getElementById('imagen').value;
+
+            var storedProducts = localStorage.getItem('products');
+            var products = storedProducts ? JSON.parse(storedProducts) : [];
+
+            products.push({
+                name: name,
+                price: price,
+                inventory: inventory,
+                image: image
+            });
+
+            localStorage.setItem('products', JSON.stringify(products));
+        }
+
+            function validarFormulario() {
             var name = document.getElementById('name').value;
             var price = document.getElementById('price').value;
             var inventory = document.getElementById('inventory').value;
