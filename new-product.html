@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-
 <body>
     <ul>
         <img src="imagenes/Logo.png" alt="Logo de la empresa">
-        <li></li><a href="index.html">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="Productos.html">Products</a></li>
         <li><a href="#">Car</a></li>
         <li><a href="#">Login</a></li>
@@ -44,7 +43,9 @@
             var name = document.getElementById('name').value;
             var price = document.getElementById('price').value;
             var inventory = document.getElementById('inventory').value;
-            var image = document.getElementById('imagen').value;
+
+            var imageInput = document.getElementById('imagen');
+            var image = imageInput.files[0];
 
             if (!name || !price || !inventory || !image) {
                 mostrarNotificacion("Todos los campos son requeridos");
@@ -54,18 +55,27 @@
             var storedProducts = localStorage.getItem('products');
             var products = storedProducts ? JSON.parse(storedProducts) : [];
 
+            // Almacenar solo el nombre del archivo en la lista de productos
+            var imageName = Date.now() + '_' + image.name;
             products.push({
                 name: name,
                 price: price,
                 inventory: inventory,
-                image: image
+                image: imageName
             });
 
             localStorage.setItem('products', JSON.stringify(products));
-            mostrarNotificacion("Producto creado exitosamente");
-        
 
-        limpiarCampos();
+            // Guardar la imagen en el almacenamiento local
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                localStorage.setItem(imageName, e.target.result);
+            };
+
+            reader.readAsDataURL(image);
+
+            mostrarNotificacion("Producto creado exitosamente");
+            limpiarCampos();
         }
 
         function limpiarCampos() {
@@ -81,5 +91,6 @@
     </script>
 </body>
 </html>
+
 
 
