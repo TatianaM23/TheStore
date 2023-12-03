@@ -63,6 +63,16 @@
 
             localStorage.setItem('products', JSON.stringify(products));
             mostrarNotificacion("Producto creado exitosamente");
+        
+
+        limpiarCampos();
+        }
+
+        function limpiarCampos() {
+            document.getElementById('name').value = '';
+            document.getElementById('price').value = '';
+            document.getElementById('inventory').value = '';
+            document.getElementById('imagen').value = '';
         }
 
         function mostrarNotificacion(message) {
