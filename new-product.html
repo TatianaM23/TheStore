@@ -42,6 +42,10 @@
             var inventory = document.getElementById('inventory').value;
             var image = document.getElementById('imagen').value;
 
+            if (!name || !price || !inventory || !image) {
+                mostrarNotificacion("Todos los campos son requeridos");
+                return;
+
             var storedProducts = localStorage.getItem('products');
             var products = storedProducts ? JSON.parse(storedProducts) : [];
 
@@ -53,6 +57,11 @@
             });
 
             localStorage.setItem('products', JSON.stringify(products));
+            mostrarNotificacion("Producto creado exitosamente");
+        }
+
+        function mostrarNotificacion(message) {
+            alert(message);
         }
     </script>
 </body>
