@@ -48,8 +48,6 @@
 
     <script>
         function mostrarInformacion(event) {
-            event.preventDefault();
-
             var name = document.getElementById('name').value;
             var price = document.getElementById('price').value;
             var inventory = document.getElementById('inventory').value;
@@ -80,7 +78,8 @@
                 if (!name || !price || !inventory || !image) {
                     return false;
                 }
-
+                
+                // Ahora solo mostramos la notificación si todos los campos están llenos
                 var storedProducts = localStorage.getItem('products');
                 var products = storedProducts ? JSON.parse(storedProducts) : [];
 
@@ -116,6 +115,7 @@
     </script>
 </body>
 </html>
+
 
 
 
