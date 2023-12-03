@@ -4,55 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
+    <title>Product</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <ul>
         <img src="imagenes/Logo.png" alt="Logo de la empresa">
         <li><a href="index.html">Home</a></li>
-        <li><a href="Productos.html">Products</a></li>
+        <li><a href="#">Products</a></li>
         <li><a href="#">Car</a></li>
         <li><a href="#">Login</a></li>
     </ul>
     <section>
         <div class="contenedor">
-            <h2>Información del Producto:</h2>
-            <div id="productInfo">
-                <p><strong>Name:</strong> Producto1</p>
-                <p><strong>Price:</strong> $50.00</p>
-                <p><strong>Inventory:</strong> 10</p>
-                <p><strong>Imagen:</strong> imagen1.jpg</p>
-                <button onclick="eliminarProducto()">Eliminar Producto</button>
-            </div>
+            <h2>Información de Productos:</h2>
+            <div id="result"></div>
         </div>
     </section>
 
     <script>
-        // Recupera la información del producto almacenada en localStorage
-        function cargarInformacionProducto()
-        var productData = JSON.parse(localStorage.getItem('productData'));
+        var storedProducts = localStorage.getItem('products');
+        var products = storedProducts ? JSON.parse(storedProducts) : [];
 
-        if (productData) {
-            var productInfo = document.getElementById('productInfo');
-            productInfo.innerHTML = `
-                <p><strong>Name:</strong> ${productData.name}</p>
-                <p><strong>Price:</strong> ${productData.price}</p>
-                <p><strong>Inventory:</strong> ${productData.inventory}</p>
-                <p><strong>Imagen:</strong> ${productData.image}</p>
+        var resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = '';
+
+        for (var i = 0; i < products.length; i++) {
+            resultDiv.innerHTML += `
+                <h2>Producto:</h2>
+                <p><strong>Name:</strong> ${products[i].name}</p>
+                <p><strong>Price:</strong> ${products[i].price}</p>
+                <p><strong>Inventory:</strong> ${products[i].inventory}</p>
+                <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
+                <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
+                <hr>
             `;
-        } else {
-            // Si no hay información, muestra un mensaje o realiza alguna acción adecuada
-            var productInfo = document.getElementById('productInfo');
-            productInfo.innerHTML = '<p>No hay información disponible.</p>';
-            }
-
-            function eliminarProducto() {
-            localStorage.removeItem('productData');
-            window.location.replace = 'index.html';
         }
-        cargarInformacionProducto();
+
+        function eliminarProducto(index) {
+            products.splice(index, 1);
+            localStorage.setItem('products', JSON.stringify(products));
+            mostrarProductos();
+        }
+
+        function mostrarProductos() {
+            resultDiv.innerHTML = '';
+
+            for (var i = 0; i < products.length; i++) {
+                resultDiv.innerHTML += `
+                    <h2>Producto:</h2>
+                    <p><strong>Name:</strong> ${products[i].name}</p>
+                    <p><strong>Price:</strong> ${products[i].price}</p>
+                    <p><strong>Inventory:</strong> ${products[i].inventory}</p>
+                    <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
+                    <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
+                    <hr>
+                `;
+            }
+        }
     </script>
 </body>
 </html>
-
