@@ -66,8 +66,11 @@
         }
         function resetearFormulario() {
     var form = document.getElementById('formulario');
-    var newForm = form.cloneNode(true);  // Clonar el formulario, incluyendo los nodos hijos
-    form.parentNode.replaceChild(newForm, form);  // Reemplazar el formulario original con el clon
+    form.reset();  // Restablecer otros campos del formulario
+
+    // Ocultar y volver a mostrar el formulario para restablecer el campo de tipo file
+    form.style.display = 'none';
+    form.style.display = 'block';
 }
 
     
