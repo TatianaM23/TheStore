@@ -48,22 +48,22 @@
             // Verificar si el usuario quiere agregar el producto
             var agregarProducto = confirm("¿Quieres agregar el producto?");
     
-            // Mostrar mensaje solo si el usuario quiere agregar el producto y algún campo está vacío
+            // Mostrar mensaje de error debajo del campo si el usuario quiere agregar el producto y algún campo está vacío
             if (agregarProducto) {
                 if (!name) {
-                    mostrarMensajeCampoRequerido('name', 'Campo requerido');
+                    mostrarMensajeError('name', 'Campo requerido');
                     return;
                 }
                 if (!price) {
-                    mostrarMensajeCampoRequerido('price', 'Campo requerido');
+                    mostrarMensajeError('price', 'Campo requerido');
                     return;
                 }
                 if (!inventory) {
-                    mostrarMensajeCampoRequerido('inventory', 'Campo requerido');
+                    mostrarMensajeError('inventory', 'Campo requerido');
                     return;
                 }
                 if (!image) {
-                    mostrarMensajeCampoRequerido('imagen', 'Campo requerido');
+                    mostrarMensajeError('imagen', 'Campo requerido');
                     return;
                 }
             }
@@ -83,15 +83,15 @@
             mostrarNotificacion("Producto creado exitosamente");
         }
     
-        function mostrarMensajeCampoRequerido(campo, message) {
-            // Crear un elemento para el mensaje de campo requerido
-            var mensajeCampoRequerido = document.createElement('p');
-            mensajeCampoRequerido.className = 'campo-requerido'; // Puedes ajustar la clase según tu estilo CSS
-            mensajeCampoRequerido.textContent = message;
+        function mostrarMensajeError(campo, message) {
+            // Crear un elemento para el mensaje de error
+            var mensajeError = document.createElement('p');
+            mensajeError.className = 'error-message'; // Puedes ajustar la clase según tu estilo CSS
+            mensajeError.textContent = message;
     
             // Insertar el mensaje debajo del campo correspondiente
             var campoElemento = document.getElementById(campo);
-            campoElemento.parentNode.insertBefore(mensajeCampoRequerido, campoElemento.nextSibling);
+            campoElemento.parentNode.insertBefore(mensajeError, campoElemento.nextSibling);
         }
     
         function mostrarNotificacion(message) {
