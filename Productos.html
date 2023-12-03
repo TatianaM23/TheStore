@@ -17,11 +17,13 @@
     </ul>
     <section>
         <div class="contenedor">
-            <h2>Información de Productos:</h2>
+            <h2 class="mt-5">Información de Productos:</h2>
             <div id="result"></div>
         </div>
     </section>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-rzHQZhGNu7FhGG1r/CDa+ng6nIEmNWs2T9qD8i6SiwHkUQjvpj6BqCSJM+G8n/E6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.7.0/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyJqEWO8Ms/Ae9iEJ8jBpkRBA9NMJRg6b0" crossorigin="anonymous"></script>
     <script>
         var storedProducts = localStorage.getItem('products');
         var products = storedProducts ? JSON.parse(storedProducts) : [];
