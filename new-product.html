@@ -41,8 +41,6 @@
 
                 <input type="submit" value="Create Product">
             </form>
-
-            <div id="productInfo"></div>
         </div>
     </section>
 
@@ -86,24 +84,23 @@
             }
 
             if (isValid) {
-                mostrarInformacion(name, price, inventory, image);
+                // Almacena la información en localStorage
+                var productData = {
+                    name: name,
+                    price: price,
+                    inventory: inventory,
+                    image: image
+                };
+
+                localStorage.setItem('productData', JSON.stringify(productData));
+
+                // Redirige a la página "Productos.html"
+                window.location.href = 'Productos.html';
             }
 
-            return isValid;
-        }
-
-        function mostrarInformacion(name, price, inventory, image) {
-            var productInfo = document.getElementById('productInfo');
-            productInfo.innerHTML = `
-                <h2>Información del Producto:</h2>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Price:</strong> ${price}</p>
-                <p><strong>Inventory:</strong> ${inventory}</p>
-                <p><strong>Imagen:</strong> ${image}</p>
-            `;
-
-            
+            return false; // Evita el envío del formulario
         }
     </script>
 </body>
 </html>
+
