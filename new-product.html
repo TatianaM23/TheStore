@@ -64,9 +64,17 @@
             localStorage.setItem('products', JSON.stringify(products));
             mostrarNotificacion("Producto creado exitosamente");
         }
+        resetearFormulario();
 
         function mostrarNotificacion(message) {
             alert(message);
+        }
+
+        function resetearFormulario() {
+            document.getElementById('name').value = '';
+            document.getElementById('price').value = '';
+            document.getElementById('inventory').value = '';
+            document.getElementById('imagen').value = '';
         }
     </script>
 </body>
