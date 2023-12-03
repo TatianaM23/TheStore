@@ -55,8 +55,8 @@
             var storedProducts = localStorage.getItem('products');
             var products = storedProducts ? JSON.parse(storedProducts) : [];
 
-            // Almacenar solo el nombre del archivo en la lista de productos
-            var imageName = Date.now() + '_' + image.name;
+            // Almacenar el nombre del archivo de la imagen en el producto
+            var imageName = name.replace(/\s+/g, '_') + '_' + Date.now() + '_' + image.name;
             products.push({
                 name: name,
                 price: price,

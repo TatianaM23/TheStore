@@ -31,8 +31,8 @@
         resultDiv.innerHTML = '';
 
         for (var i = 0; i < products.length; i++) {
-            // Construir la URL completa de la imagen utilizando la carpeta "imagenes" y el nombre del archivo
-            var imageUrl = 'imagenes/' + products[i].image;
+            // Construir la URL completa de la imagen utilizando el nombre del archivo
+            var imageUrl = 'data:image/*;base64,' + localStorage.getItem(products[i].image);
 
             resultDiv.innerHTML += `
                 <h2>Producto:</h2>
@@ -55,7 +55,7 @@
             resultDiv.innerHTML = '';
 
             for (var i = 0; i < products.length; i++) {
-                var imageUrl = 'imagenes/' + products[i].image;
+                var imageUrl = 'data:image/*;base64,' + localStorage.getItem(products[i].image);
 
                 resultDiv.innerHTML += `
                     <h2>Producto:</h2>
