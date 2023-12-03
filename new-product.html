@@ -38,67 +38,35 @@
     <script>
         function mostrarInformacion(event) {
             event.preventDefault();
-    
-            // Obtener los valores de los campos
+
             var name = document.getElementById('name').value;
             var price = document.getElementById('price').value;
             var inventory = document.getElementById('inventory').value;
             var image = document.getElementById('imagen').value;
-    
-            // Verificar si el usuario quiere agregar el producto
-            var agregarProducto = confirm("¿Quieres agregar el producto?");
-    
-            // Mostrar mensaje de error debajo del campo si el usuario quiere agregar el producto y algún campo está vacío
-            if (agregarProducto) {
-                if (!name) {
-                    mostrarMensajeError('name', 'Campo requerido');
-                    return;
-                }
-                if (!price) {
-                    mostrarMensajeError('price', 'Campo requerido');
-                    return;
-                }
-                if (!inventory) {
-                    mostrarMensajeError('inventory', 'Campo requerido');
-                    return;
-                }
-                if (!image) {
-                    mostrarMensajeError('imagen', 'Campo requerido');
-                    return;
-                }
+
+            if (!name || !price || !inventory || !image) {
+                mostrarNotificacion("Todos los campos son requeridos");
+                return;
             }
-    
-            // Resto del código para agregar el producto
+
             var storedProducts = localStorage.getItem('products');
             var products = storedProducts ? JSON.parse(storedProducts) : [];
-    
+
             products.push({
                 name: name,
                 price: price,
                 inventory: inventory,
                 image: image
             });
-    
+
             localStorage.setItem('products', JSON.stringify(products));
             mostrarNotificacion("Producto creado exitosamente");
         }
-    
-        function mostrarMensajeError(campo, message) {
-            // Crear un elemento para el mensaje de error
-            var mensajeError = document.createElement('p');
-            mensajeError.className = 'error-message'; // Puedes ajustar la clase según tu estilo CSS
-            mensajeError.textContent = message;
-    
-            // Insertar el mensaje debajo del campo correspondiente
-            var campoElemento = document.getElementById(campo);
-            campoElemento.parentNode.insertBefore(mensajeError, campoElemento.nextSibling);
-        }
-    
+
         function mostrarNotificacion(message) {
             alert(message);
         }
     </script>
-    
 </body>
 </html>
 
