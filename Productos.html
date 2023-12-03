@@ -7,16 +7,16 @@
     <title>Product</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .fila {
+        .contenedor {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .producto {
             width: 30%; /* Ajusta el ancho según tus necesidades */
-            border: 1px solid #ccc;
+            margin: 10px;
             padding: 10px;
+            border: 1px solid #ccc;
             text-align: center;
         }
     </style>
@@ -30,10 +30,7 @@
         <li><a href="#">Login</a></li>
     </ul>
     <section>
-        <div class="contenedor">
-            <h2>Información de Productos:</h2>
-            <div id="result"></div>
-        </div>
+        <div class="contenedor" id="result"></div>
     </section>
     <script>
         var storedProducts = localStorage.getItem('products');
@@ -45,13 +42,7 @@
         function mostrarProductos() {
             resultDiv.innerHTML = '';
 
-            var productosPorFila = 3;
-
             for (var i = 0; i < products.length; i++) {
-                if (i % productosPorFila === 0) {
-                    resultDiv.innerHTML += '<div class="fila">';
-                }
-
                 resultDiv.innerHTML += `
                     <div class="producto">
                         <h2>Producto:</h2>
@@ -62,10 +53,6 @@
                         <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
                     </div>
                 `;
-
-                if ((i + 1) % productosPorFila === 0 || i === products.length - 1) {
-                    resultDiv.innerHTML += '</div>';
-                }
             }
         }
 
