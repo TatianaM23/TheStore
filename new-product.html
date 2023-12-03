@@ -6,29 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Product</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .error-message {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <ul>
         <img src="imagenes/Logo.png" alt="Logo de la empresa">
-        <li></li><a href="index.html">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="Productos.html">Products</a></li>
         <li><a href="#">Car</a></li>
         <li><a href="#">Login</a></li>
     </ul>
     <section>
         <div class="contenedor"> 
-            <form onsubmit="mostrarInformacion()">
+            <form onsubmit="return validarFormulario()">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name">
+                <div id="nameError" class="error-message"></div>
 
                 <label for="price">Price:</label>
                 <input type="number" id="price" name="price">
+                <div id="priceError" class="error-message"></div>
 
                 <label for="inventory">Inventory:</label>
                 <input type="number" id="inventory" name="inventory">
+                <div id="inventoryError" class="error-message"></div>
 
                 <label for="imagen">Seleccionar imagen:</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                <div id="imageError" class="error-message"></div>
 
                 <input type="submit" value="Create Product">
             </form>
@@ -36,23 +45,45 @@
     </section>
 
     <script>
-        function mostrarInformacion() {
+        function validarFormulario() {
             var name = document.getElementById('name').value;
             var price = document.getElementById('price').value;
             var inventory = document.getElementById('inventory').value;
             var image = document.getElementById('imagen').value;
 
-            var storedProducts = localStorage.getItem('products');
-            var products = storedProducts ? JSON.parse(storedProducts) : [];
+            var nameError = document.getElementById('nameError');
+            var priceError = document.getElementById('priceError');
+            var inventoryError = document.getElementById('inventoryError');
+            var imageError = document.getElementById('imageError');
 
-            products.push({
-                name: name,
-                price: price,
-                inventory: inventory,
-                image: image
-            });
+            nameError.textContent = "";
+            priceError.textContent = "";
+            inventoryError.textContent = "";
+            imageError.textContent = "";
 
-            localStorage.setItem('products', JSON.stringify(products));
+            var isValid = true;
+
+            if (name.trim() === "") {
+                nameError.textContent = "Campo requerido";
+                isValid = false;
+            }
+
+            if (price.trim() === "") {
+                priceError.textContent = "Campo requerido";
+                isValid = false;
+            }
+
+            if (inventory.trim() === "") {
+                inventoryError.textContent = "Campo requerido";
+                isValid = false;
+            }
+
+            if (image.trim() === "") {
+                imageError.textContent = "Campo requerido";
+                isValid = false;
+            }
+
+            return isValid;
         }
     </script>
 </body>
