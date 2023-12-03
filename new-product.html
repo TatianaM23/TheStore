@@ -19,7 +19,7 @@
     </ul>
     <section>
         <div class="contenedor"> 
-            <form            onsubmit="mostrarInformacion(event)">
+            <form   id="formulario"         onsubmit="mostrarInformacion(event)">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
 
@@ -64,9 +64,12 @@
             localStorage.setItem('products', JSON.stringify(products));
             mostrarNotificacion("Producto creado exitosamente");
         }
-        resetearFormulario();{
+        function resetearFormulario() {
+    var form = document.getElementById('formulario');
+    var newForm = form.cloneNode(true);  // Clonar el formulario, incluyendo los nodos hijos
+    form.parentNode.replaceChild(newForm, form);  // Reemplazar el formulario original con el clon
+}
 
-        }
     
         function mostrarNotificacion(message) {
             alert(message);
