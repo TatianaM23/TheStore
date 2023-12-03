@@ -38,42 +38,35 @@
     </section>
 
     <script>
-        <!-- Código del formulario -->
-<script>
-    function mostrarInformacion(event) {
-        event.preventDefault();
+        function mostrarInformacion(event) {
+            event.preventDefault();
 
-        var name = document.getElementById('name').value;
-        var price = document.getElementById('price').value;
-        var inventory = document.getElementById('inventory').value;
+            var name = document.getElementById('name').value;
+            var price = document.getElementById('price').value;
+            var inventory = document.getElementById('inventory').value;
+            var image = document.getElementById('imagen').value;
 
-        var imageInput = document.getElementById('imagen');
-        var image = imageInput.files[0];
+            if (!name || !price || !inventory || !image) {
+                mostrarNotificacion("Todos los campos son requeridos");
+                return;
+            }
 
-        if (!name || !price || !inventory || !image) {
-            mostrarNotificacion("Todos los campos son requeridos");
-            return;
-        }
+            var storedProducts = localStorage.getItem('products');
+            var products = storedProducts ? JSON.parse(storedProducts) : [];
 
-        var storedProducts = localStorage.getItem('products');
-        var products = storedProducts ? JSON.parse(storedProducts) : [];
+            products.push({
+                name: name,
+                price: price,
+                inventory: inventory,
+                image: image
+            });
 
-        var imageName = name.replace(/\s+/g, '_') + '_' + Date.now() + '_' + image.name;
-        products.push({
-            name: name,
-            price: price,
-            inventory: inventory,
-            image: imageName
-        });
+            localStorage.setItem('products', JSON.stringify(products));
+            mostrarNotificacion("Producto creado exitosamente");
+        
 
-        localStorage.setItem('products', JSON.stringify(products));
-
-        // No guardamos la imagen en localStorage, solo el nombre
-
-        mostrarNotificacion("Producto creado exitosamente");
         limpiarCampos();
-    }
-    // ... Resto del código
+        }
 
         function limpiarCampos() {
             document.getElementById('name').value = '';

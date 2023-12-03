@@ -21,7 +21,6 @@
             <div id="result"></div>
         </div>
     </section>
-
     <script>
         var storedProducts = localStorage.getItem('products');
         var products = storedProducts ? JSON.parse(storedProducts) : [];
@@ -40,27 +39,6 @@
                 <hr>
             `;
         }
-        <!-- Código de la página de visualización de productos -->
-
-    // ... Código anterior
-
-    for (var i = 0; i < products.length; i++) {
-        // Construir la URL completa de la imagen utilizando el nombre del archivo
-        var imageUrl = 'ruta_a_tu_servidor/imagenes/' + products[i].image;
-
-        resultDiv.innerHTML += `
-            <h2>Producto:</h2>
-            <p><strong>Name:</strong> ${products[i].name}</p>
-            <p><strong>Price:</strong> ${products[i].price}</p>
-            <p><strong>Inventory:</strong> ${products[i].inventory}</p>
-            <p><strong>Imagen:</strong> <img src="${imageUrl}" alt="Imagen del Producto"></p>
-            <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
-            <hr>
-        `;
-    }
-
-    // ... Resto del código
-
 
         function eliminarProducto(index) {
             products.splice(index, 1);
