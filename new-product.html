@@ -64,26 +64,19 @@
             localStorage.setItem('products', JSON.stringify(products));
             mostrarNotificacion("Producto creado exitosamente");
         }
-        function resetearFormulario() {
-    var form = document.getElementById('formulario');
-    form.reset();  // Restablecer otros campos del formulario
-
-    // Ocultar y volver a mostrar el formulario para restablecer el campo de tipo file
-    form.style.display = 'none';
-    form.style.display = 'block';
-}
+      
 
     
         function mostrarNotificacion(message) {
             alert(message);
         }
 
-        function resetearFormulario() {
-            document.getElementById('name').value = '';
-            document.getElementById('price').value = '';
-            document.getElementById('inventory').value = '';
-            document.getElementById('imagen').value = '';
-        }
+    function resetearFormulario() {
+    document.getElementById('name').value = '';
+    document.getElementById('price').value = '';
+    document.getElementById('inventory').value = '';
+    document.getElementById('imagen').value = '';
+}
     </script>
 </body>
 </html>
