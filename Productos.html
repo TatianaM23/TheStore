@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product</title>
+    <title>Productos</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <ul>
         <img src="imagenes/Logo.png" alt="Logo de la empresa">
         <li><a href="index.html">Home</a></li>
-        <li><a href="#">Products</a></li>
+        <li><a href="Productos.html">Products</a></li>
         <li><a href="#">Car</a></li>
         <li><a href="#">Login</a></li>
     </ul>
@@ -30,38 +31,19 @@
         resultDiv.innerHTML = '';
 
         for (var i = 0; i < products.length; i++) {
+            // Construir la URL completa de la imagen utilizando la carpeta "imagenes" y el nombre del archivo
+            var imageUrl = 'imagenes/' + products[i].image;
+
             resultDiv.innerHTML += `
                 <h2>Producto:</h2>
                 <p><strong>Name:</strong> ${products[i].name}</p>
                 <p><strong>Price:</strong> ${products[i].price}</p>
                 <p><strong>Inventory:</strong> ${products[i].inventory}</p>
-                <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
+                <p><strong>Imagen:</strong> <img src="${imageUrl}" alt="Imagen del Producto"></p>
                 <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
                 <hr>
             `;
         }
-        var params = new URLSearchParams(window.location.search);
-    var newProductImage = params.get('product_image');
-
-    if (newProductImage) {
-        // Suponiendo que el nuevo producto se agrega de alguna manera a la lista products
-        // Aquí asumo que el nuevo producto tiene al menos los atributos name, price, inventory, y image
-        var newProduct = {
-            name: params.get('product_name'),
-            price: params.get('product_price'),
-            inventory: params.get('product_inventory'),
-            image: newProductImage
-        };
-
-        // Agregar el nuevo producto a la lista
-        products.push(newProduct);
-
-        // Actualizar la información en el almacenamiento local
-        localStorage.setItem('products', JSON.stringify(products));
-
-        // Limpiar los parámetros de la URL para evitar la reactivación accidental
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
 
         function eliminarProducto(index) {
             products.splice(index, 1);
@@ -73,12 +55,14 @@
             resultDiv.innerHTML = '';
 
             for (var i = 0; i < products.length; i++) {
+                var imageUrl = 'imagenes/' + products[i].image;
+
                 resultDiv.innerHTML += `
                     <h2>Producto:</h2>
                     <p><strong>Name:</strong> ${products[i].name}</p>
                     <p><strong>Price:</strong> ${products[i].price}</p>
                     <p><strong>Inventory:</strong> ${products[i].inventory}</p>
-                    <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
+                    <p><strong>Imagen:</strong> <img src="${imageUrl}" alt="Imagen del Producto"></p>
                     <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
                     <hr>
                 `;
