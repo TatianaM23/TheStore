@@ -39,22 +39,25 @@
         function mostrarInformacion(event) {
             event.preventDefault();
     
+            // Obtener los valores de los campos
             var name = document.getElementById('name').value;
             var price = document.getElementById('price').value;
             var inventory = document.getElementById('inventory').value;
             var image = document.getElementById('imagen').value;
     
-            // Verifica si el usuario ha indicado que quiere agregar el producto
+            // Verificar si el usuario quiere agregar el producto
             var agregarProducto = confirm("¿Quieres agregar el producto?");
     
-            // Muestra el mensaje solo si el usuario ha indicado que quiere agregar el producto
-            if (agregarProducto) {
-                if (!name || !price || !inventory || !image) {
-                    mostrarMensajeCampoRequerido("Todos los campos son requeridos");
-                    return;
-                }
+            // Mostrar mensaje solo si el usuario quiere agregar el producto y algún campo está vacío
+            if (agregarProducto && (!name || !price || !inventory || !image)) {
+                mostrarMensajeCampoRequerido("Todos los campos son requeridos");
+                return;
             }
     
+            // Restablecer el mensaje de campo requerido si no hay problemas
+            resetearMensajeCampoRequerido();
+    
+            // Resto del código para agregar el producto
             var storedProducts = localStorage.getItem('products');
             var products = storedProducts ? JSON.parse(storedProducts) : [];
     
@@ -72,12 +75,20 @@
         function mostrarMensajeCampoRequerido(message) {
             // Crear un elemento para el mensaje de campo requerido
             var mensajeCampoRequerido = document.createElement('p');
-            mensajeCampoRequerido.className = 'campo-requerido';
+            mensajeCampoRequerido.id = 'mensaje-campo-requerido'; // ID para el mensaje (puedes ajustarlo según sea necesario)
             mensajeCampoRequerido.textContent = message;
     
-            // Insertar el mensaje debajo del campo vacío (puedes ajustar esto según tu estructura HTML)
+            // Insertar el mensaje debajo del formulario (ajusta según tu estructura HTML)
             var formulario = document.getElementById('tuFormulario'); // Reemplaza 'tuFormulario' con el ID de tu formulario
             formulario.appendChild(mensajeCampoRequerido);
+        }
+    
+        function resetearMensajeCampoRequerido() {
+            // Eliminar el mensaje de campo requerido si existe
+            var mensajeCampoRequerido = document.getElementById('mensaje-campo-requerido');
+            if (mensajeCampoRequerido) {
+                mensajeCampoRequerido.remove();
+            }
         }
     
         function mostrarNotificacion(message) {
