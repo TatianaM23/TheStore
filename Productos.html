@@ -30,6 +30,7 @@
 
     <script>
         // Recupera la información del producto almacenada en localStorage
+        function cargarInformacionProducto()
         var productData = JSON.parse(localStorage.getItem('productData'));
 
         if (productData) {
@@ -50,6 +51,7 @@
             localStorage.removeItem('productData');
             window.location.href = 'index.html';
         }
+        cargarInformacionProducto();
     </script>
 </body>
 </html>
