@@ -38,35 +38,53 @@
     <script>
         function mostrarInformacion(event) {
             event.preventDefault();
-
+    
             var name = document.getElementById('name').value;
             var price = document.getElementById('price').value;
             var inventory = document.getElementById('inventory').value;
             var image = document.getElementById('imagen').value;
-
-            if (!name || !price || !inventory || !image) {
-                mostrarNotificacion("Todos los campos son requeridos");
-                return;
+    
+            // Verifica si el usuario ha indicado que quiere agregar el producto
+            var agregarProducto = confirm("¿Quieres agregar el producto?");
+    
+            // Muestra el mensaje solo si el usuario ha indicado que quiere agregar el producto
+            if (agregarProducto) {
+                if (!name || !price || !inventory || !image) {
+                    mostrarMensajeCampoRequerido("Todos los campos son requeridos");
+                    return;
+                }
             }
-
+    
             var storedProducts = localStorage.getItem('products');
             var products = storedProducts ? JSON.parse(storedProducts) : [];
-
+    
             products.push({
                 name: name,
                 price: price,
                 inventory: inventory,
                 image: image
             });
-
+    
             localStorage.setItem('products', JSON.stringify(products));
             mostrarNotificacion("Producto creado exitosamente");
         }
-
+    
+        function mostrarMensajeCampoRequerido(message) {
+            // Crear un elemento para el mensaje de campo requerido
+            var mensajeCampoRequerido = document.createElement('p');
+            mensajeCampoRequerido.className = 'campo-requerido';
+            mensajeCampoRequerido.textContent = message;
+    
+            // Insertar el mensaje debajo del campo vacío (puedes ajustar esto según tu estructura HTML)
+            var formulario = document.getElementById('tuFormulario'); // Reemplaza 'tuFormulario' con el ID de tu formulario
+            formulario.appendChild(mensajeCampoRequerido);
+        }
+    
         function mostrarNotificacion(message) {
             alert(message);
         }
     </script>
+    
 </body>
 </html>
 
