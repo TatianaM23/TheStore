@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .fila {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .producto {
+            width: 30%; /* Ajusta el ancho según tus necesidades */
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <ul>
@@ -15,23 +29,6 @@
         <li><a href="#">Car</a></li>
         <li><a href="#">Login</a></li>
     </ul>
-
-    
-<style>
-    .fila {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-    }
-
-    .producto {
-        width: 30%; /* Ajusta el ancho según tus necesidades */
-        border: 1px solid #ccc;
-        padding: 10px;
-        text-align: center;
-    }
-</style>
-
     <section>
         <div class="contenedor">
             <h2>Información de Productos:</h2>
@@ -45,69 +42,41 @@
         var resultDiv = document.getElementById('result');
         resultDiv.innerHTML = '';
 
-        for (var i = 0; i < products.length; i++) {
-            resultDiv.innerHTML += `
-                <h2>Producto:</h2>
-                <p><strong>Name:</strong> ${products[i].name}</p>
-                <p><strong>Price:</strong> ${products[i].price}</p>
-                <p><strong>Inventory:</strong> ${products[i].inventory}</p>
-                <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
-                <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
-                <hr>
-            `;
+        function mostrarProductos() {
+            resultDiv.innerHTML = '';
+
+            var productosPorFila = 3;
+
+            for (var i = 0; i < products.length; i++) {
+                if (i % productosPorFila === 0) {
+                    resultDiv.innerHTML += '<div class="fila">';
+                }
+
+                resultDiv.innerHTML += `
+                    <div class="producto">
+                        <h2>Producto:</h2>
+                        <p><strong>Name:</strong> ${products[i].name}</p>
+                        <p><strong>Price:</strong> ${products[i].price}</p>
+                        <p><strong>Inventory:</strong> ${products[i].inventory}</p>
+                        <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
+                        <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
+                    </div>
+                `;
+
+                if ((i + 1) % productosPorFila === 0 || i === products.length - 1) {
+                    resultDiv.innerHTML += '</div>';
+                }
+            }
         }
+
+        mostrarProductos();
 
         function eliminarProducto(index) {
             products.splice(index, 1);
             localStorage.setItem('products', JSON.stringify(products));
             mostrarProductos();
         }
-
-        function mostrarProductos() {
-            resultDiv.innerHTML = '';
-
-            for (var i = 0; i < products.length; i++) {
-                resultDiv.innerHTML += `
-                    <h2>Producto:</h2>
-                    <p><strong>Name:</strong> ${products[i].name}</p>
-                    <p><strong>Price:</strong> ${products[i].price}</p>
-                    <p><strong>Inventory:</strong> ${products[i].inventory}</p>
-                    <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
-                    <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
-                    <hr>
-                `;
-            }
-        }
-
-        function mostrarProductos() {
-        resultDiv.innerHTML = '';
-
-        // Nueva función para mostrar productos en filas y columnas
-        var productosPorFila = 3; // Puedes ajustar la cantidad de productos por fila
-
-        for (var i = 0; i < products.length; i++) {
-            // Iniciar una nueva fila cada 'productosPorFila' productos
-            if (i % productosPorFila === 0) {
-                resultDiv.innerHTML += '<div class="fila">';
-            }
-
-            resultDiv.innerHTML += `
-                <div class="producto">
-                    <h2>Producto:</h2>
-                    <p><strong>Name:</strong> ${products[i].name}</p>
-                    <p><strong>Price:</strong> ${products[i].price}</p>
-                    <p><strong>Inventory:</strong> ${products[i].inventory}</p>
-                    <p><strong>Imagen:</strong> <img src="imagenes/${products[i].image}" alt="Imagen del Producto"></p>
-                    <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
-                </div>
-            `;
-
-            // Cerrar la fila después de mostrar 'productosPorFila' productos
-            if ((i + 1) % productosPorFila === 0 || i === products.length - 1) {
-                resultDiv.innerHTML += '</div>';
-            }
-        }
-    }
     </script>
 </body>
 </html>
+
