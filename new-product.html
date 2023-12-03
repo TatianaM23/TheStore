@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Product</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <ul>
@@ -17,7 +24,7 @@
     </ul>
     <section>
         <div class="contenedor"> 
-            <form onsubmit="mostrarInformacion(event)">
+            <form onsubmit="return mostrarInformacion(event)">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
                 <span id="nameError" class="error-message"></span>
@@ -69,8 +76,9 @@
                     mostrarError("imageError", "Campo requerido");
                 }
 
+                // Si hay algún campo vacío, no se envía el formulario
                 if (!name || !price || !inventory || !image) {
-                    return;
+                    return false;
                 }
 
                 var storedProducts = localStorage.getItem('products');
@@ -86,6 +94,8 @@
                 localStorage.setItem('products', JSON.stringify(products));
                 mostrarNotificacion("Producto creado exitosamente");
             }
+
+            return false;  // No se envía el formulario
         }
 
         function mostrarNotificacion(message) {
@@ -106,6 +116,7 @@
     </script>
 </body>
 </html>
+
 
 
 
