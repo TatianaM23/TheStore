@@ -68,24 +68,24 @@
                 if (!image) {
                     mostrarError("imageError", "Campo requerido");
                 }
+
+                if (!name || !price || !inventory || !image) {
+                    return;
+                }
+
+                var storedProducts = localStorage.getItem('products');
+                var products = storedProducts ? JSON.parse(storedProducts) : [];
+
+                products.push({
+                    name: name,
+                    price: price,
+                    inventory: inventory,
+                    image: image
+                });
+
+                localStorage.setItem('products', JSON.stringify(products));
+                mostrarNotificacion("Producto creado exitosamente");
             }
-
-            if (!name || !price || !inventory || !image) {
-                return;
-            }
-
-            var storedProducts = localStorage.getItem('products');
-            var products = storedProducts ? JSON.parse(storedProducts) : [];
-
-            products.push({
-                name: name,
-                price: price,
-                inventory: inventory,
-                image: image
-            });
-
-            localStorage.setItem('products', JSON.stringify(products));
-            mostrarNotificacion("Producto creado exitosamente");
         }
 
         function mostrarNotificacion(message) {
@@ -106,6 +106,7 @@
     </script>
 </body>
 </html>
+
 
 
 
