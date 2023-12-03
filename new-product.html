@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
+
 <body>
     <ul>
         <img src="imagenes/Logo.png" alt="Logo de la empresa">
-        <li><a href="index.html">Home</a></li>
+        <li></li><a href="index.html">Home</a></li>
         <li><a href="Productos.html">Products</a></li>
         <li><a href="#">Car</a></li>
         <li><a href="#">Login</a></li>
@@ -37,46 +38,44 @@
     </section>
 
     <script>
-        function mostrarInformacion(event) {
-            event.preventDefault();
+        <!-- Código del formulario -->
+<script>
+    function mostrarInformacion(event) {
+        event.preventDefault();
 
-            var name = document.getElementById('name').value;
-            var price = document.getElementById('price').value;
-            var inventory = document.getElementById('inventory').value;
+        var name = document.getElementById('name').value;
+        var price = document.getElementById('price').value;
+        var inventory = document.getElementById('inventory').value;
 
-            var imageInput = document.getElementById('imagen');
-            var image = imageInput.files[0];
+        var imageInput = document.getElementById('imagen');
+        var image = imageInput.files[0];
 
-            if (!name || !price || !inventory || !image) {
-                mostrarNotificacion("Todos los campos son requeridos");
-                return;
-            }
-
-            var storedProducts = localStorage.getItem('products');
-            var products = storedProducts ? JSON.parse(storedProducts) : [];
-
-            // Almacenar el nombre del archivo de la imagen en el producto
-            var imageName = name.replace(/\s+/g, '_') + '_' + Date.now() + '_' + image.name;
-            products.push({
-                name: name,
-                price: price,
-                inventory: inventory,
-                image: imageName
-            });
-
-            localStorage.setItem('products', JSON.stringify(products));
-
-            // Guardar la imagen en el almacenamiento local
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                localStorage.setItem(imageName, e.target.result);
-            };
-
-            reader.readAsDataURL(image);
-
-            mostrarNotificacion("Producto creado exitosamente");
-            limpiarCampos();
+        if (!name || !price || !inventory || !image) {
+            mostrarNotificacion("Todos los campos son requeridos");
+            return;
         }
+
+        var storedProducts = localStorage.getItem('products');
+        var products = storedProducts ? JSON.parse(storedProducts) : [];
+
+        var imageName = name.replace(/\s+/g, '_') + '_' + Date.now() + '_' + image.name;
+        products.push({
+            name: name,
+            price: price,
+            inventory: inventory,
+            image: imageName
+        });
+
+        localStorage.setItem('products', JSON.stringify(products));
+
+        // No guardamos la imagen en localStorage, solo el nombre
+
+        mostrarNotificacion("Producto creado exitosamente");
+        limpiarCampos();
+    }
+    // ... Resto del código
+</script>
+
 
         function limpiarCampos() {
             document.getElementById('name').value = '';
@@ -91,6 +90,5 @@
     </script>
 </body>
 </html>
-
 
 
