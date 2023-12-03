@@ -40,6 +40,28 @@
                 <hr>
             `;
         }
+        var params = new URLSearchParams(window.location.search);
+    var newProductImage = params.get('product_image');
+
+    if (newProductImage) {
+        // Suponiendo que el nuevo producto se agrega de alguna manera a la lista products
+        // Aquí asumo que el nuevo producto tiene al menos los atributos name, price, inventory, y image
+        var newProduct = {
+            name: params.get('product_name'),
+            price: params.get('product_price'),
+            inventory: params.get('product_inventory'),
+            image: newProductImage
+        };
+
+        // Agregar el nuevo producto a la lista
+        products.push(newProduct);
+
+        // Actualizar la información en el almacenamiento local
+        localStorage.setItem('products', JSON.stringify(products));
+
+        // Limpiar los parámetros de la URL para evitar la reactivación accidental
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
 
         function eliminarProducto(index) {
             products.splice(index, 1);
