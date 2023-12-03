@@ -17,22 +17,18 @@
     </ul>
     <section>
         <div class="contenedor"> 
-            <form onsubmit="mostrarInformacion(event)">
+            <form onsubmit="mostrarInformacion()">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <div id="nameError" class="error-message"></div>
+                <input type="text" id="name" name="name">
 
                 <label for="price">Price:</label>
-                <input type="number" id="price" name="price" required>
-                <div id="priceError" class="error-message"></div>
+                <input type="number" id="price" name="price">
 
                 <label for="inventory">Inventory:</label>
-                <input type="number" id="inventory" name="inventory" required>
-                <div id="inventoryError" class="error-message"></div>
+                <input type="number" id="inventory" name="inventory">
 
                 <label for="imagen">Seleccionar imagen:</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
-                <div id="imageError" class="error-message"></div>
 
                 <input type="submit" value="Create Product">
             </form>
@@ -40,23 +36,13 @@
     </section>
 
     <script>
-        function mostrarInformacion(event) {
-            event.preventDefault();
-
+        function mostrarInformacion() {
             var name = document.getElementById('name').value;
             var price = document.getElementById('price').value;
             var inventory = document.getElementById('inventory').value;
             var image = document.getElementById('imagen').value;
 
-            mostrarError('name', !name);
-            mostrarError('price', !price);
-            mostrarError('inventory', !inventory);
-            mostrarError('imagen', !image);
-
-            if (!name || !price || !inventory || !image) {
-                return;
-            }
-
+            
             var storedProducts = localStorage.getItem('products');
             var products = storedProducts ? JSON.parse(storedProducts) : [];
 
@@ -68,23 +54,10 @@
             });
 
             localStorage.setItem('products', JSON.stringify(products));
-            mostrarNotificacion("Producto creado exitosamente");
         }
 
-        function mostrarError(id, showError) {
-            var errorElement = document.getElementById(id + 'Error');
-            if (showError) {
-                errorElement.textContent = "Campo requerido";
-            } else {
-                errorElement.textContent = "";
-            }
-        }
-
-        function mostrarNotificacion(message) {
-            alert(message);
-        }
+        
     </script>
 </body>
 </html>
-
 
