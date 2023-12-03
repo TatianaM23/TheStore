@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<style>
-    .error-message {
-        color: red;
-        font-size: 0.8em;
-        margin-top: 5px;
-    }
-</style>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,8 +7,6 @@
     <title>New Product</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
-
 <body>
     <ul>
         <img src="imagenes/Logo.png" alt="Logo de la empresa">
@@ -31,15 +20,19 @@
             <form onsubmit="mostrarInformacion(event)">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
+                <span id="nameError" class="error-message"></span>
 
                 <label for="price">Price:</label>
                 <input type="number" id="price" name="price" required>
+                <span id="priceError" class="error-message"></span>
 
                 <label for="inventory">Inventory:</label>
                 <input type="number" id="inventory" name="inventory" required>
+                <span id="inventoryError" class="error-message"></span>
 
                 <label for="imagen">Seleccionar imagen:</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                <span id="imageError" class="error-message"></span>
 
                 <input type="submit" value="Create Product">
             </form>
@@ -55,8 +48,29 @@
             var inventory = document.getElementById('inventory').value;
             var image = document.getElementById('imagen').value;
 
+            resetErrorMessages();  // Limpiar mensajes de error anteriores
+
+            var agregarProducto = confirm("¿Desea agregar este producto?");
+
+            if (agregarProducto) {
+                if (!name) {
+                    mostrarError("nameError", "Campo requerido");
+                }
+
+                if (!price) {
+                    mostrarError("priceError", "Campo requerido");
+                }
+
+                if (!inventory) {
+                    mostrarError("inventoryError", "Campo requerido");
+                }
+
+                if (!image) {
+                    mostrarError("imageError", "Campo requerido");
+                }
+            }
+
             if (!name || !price || !inventory || !image) {
-                mostrarNotificacion("Todos los campos son requeridos");
                 return;
             }
 
@@ -74,38 +88,21 @@
             mostrarNotificacion("Producto creado exitosamente");
         }
 
-        function mostrarNotificacion(message, isError = false) {
-    if (isError) {
-        var errorContainer = document.createElement('div');
-        errorContainer.textContent = message;
-        errorContainer.className = 'error-message';
+        function mostrarNotificacion(message) {
+            alert(message);
+        }
 
-        var form = document.querySelector('form');
-        form.appendChild(errorContainer);
-    } else {
-        alert(message);
-    }}
+        function mostrarError(elementId, message) {
+            var errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+        }
 
-
-    function mostrarError(message) {
-    mostrarNotificacion(message, true);
-}
-if (!name) {
-    mostrarError("Campo requerido");
-}
-
-if (!price) {
-    mostrarError("Campo requerido");
-}
-
-if (!inventory) {
-    mostrarError("Campo requerido");
-}
-
-if (!image) {
-    mostrarError("Campo requerido");
-}
-
+        function resetErrorMessages() {
+            var errorElements = document.querySelectorAll(".error-message");
+            errorElements.forEach(function (element) {
+                element.textContent = "";
+            });
+        }
     </script>
 </body>
 </html>
