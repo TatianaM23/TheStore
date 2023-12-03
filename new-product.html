@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Product</title>
     <link rel="stylesheet" href="styles.css">
-    
+    <style>
+        .error-message {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <ul>
@@ -37,6 +41,8 @@
 
                 <input type="submit" value="Create Product">
             </form>
+
+            <div id="productInfo"></div>
         </div>
     </section>
 
@@ -79,13 +85,23 @@
                 isValid = false;
             }
 
+            if (isValid) {
+                mostrarInformacion(name, price, inventory, image);
+            }
+
             return isValid;
         }
-    </script>
-    <style>
-        .error-message {
-            color: red;
+
+        function mostrarInformacion(name, price, inventory, image) {
+            var productInfo = document.getElementById('productInfo');
+            productInfo.innerHTML = `
+                <h2>Información del Producto:</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Price:</strong> ${price}</p>
+                <p><strong>Inventory:</strong> ${inventory}</p>
+                <p><strong>Imagen:</strong> ${image}</p>
+            `;
         }
-    </style>
+    </script>
 </body>
 </html>
