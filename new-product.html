@@ -75,7 +75,7 @@
                 document.getElementById('inventoryError').innerText = "";
             }
 
-            if (!imageInput.files.length) {
+            if (!imageInput.value) {
                 document.getElementById('imageError').innerText = "Campo requerido";
                 isValid = false;
             } else {
