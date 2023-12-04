@@ -33,6 +33,18 @@
         <div class="contenedor" id="result"></div>
     </section>
     <script>
+        console.log("Hola desde la consola"); // Este mensaje se imprimirá en la consola del navegador
+    </script>
+    <!-- ... tu código HTML ... -->
+
+<script>
+    var imagePath = "C:/Users/Acer/Desktop/Ingenieria Web The Store/TheStore/Imagenes/" + "${products[i].image}";
+    console.log("Ruta de la imagen:", imagePath);
+</script>
+
+<!-- ... más código HTML ... -->
+
+    <script>
         var storedProducts = localStorage.getItem('products');
         var products = storedProducts ? JSON.parse(storedProducts) : [];
 
