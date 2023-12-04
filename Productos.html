@@ -32,18 +32,7 @@
     <section>
         <div class="contenedor" id="result"></div>
     </section>
-    <script>
-        console.log("Hola desde la consola"); // Este mensaje se imprimirá en la consola del navegador
-    </script>
-    <!-- ... tu código HTML ... -->
-
-<script>
-    var imagePath = "C:/Users/Acer/Desktop/Ingenieria Web The Store/TheStore/Imagenes/" + "${products[i].image}";
-    console.log("C:/Users/Acer/Desktop/Ingenieria Web The Store/TheStore/Imagenes/:", imagePath);
-</script>
-
-<!-- ... más código HTML ... -->
-
+    
     <script>
         var storedProducts = localStorage.getItem('products');
         var products = storedProducts ? JSON.parse(storedProducts) : [];
@@ -61,7 +50,7 @@
                         <p><strong>Name:</strong> ${products[i].name}</p>
                         <p><strong>Price:</strong> ${products[i].price}</p>
                         <p><strong>Inventory:</strong> ${products[i].inventory}</p>
-                        <p><strong>Imagen:</strong> <img src="C:/Users/Acer/Desktop/Ingenieria Web The Store/TheStore/Imagenes/${products[i].image}" alt="Imagen del Producto">
+                        <p><strong>Imagen:</strong> <img src="C:/Users/Acer/Desktop/Ingenieria Web The Store/TheStore/Imagenes/${products[i].image}" alt="Imagen del Producto"></p>
 
 
                         <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
