@@ -86,11 +86,10 @@
                 return false;
             }
 
-            // Resto del código para guardar el producto...
-            mostrarNotificacion("Producto creado con éxito");
+            alert("Producto creado con éxito");
             limpiarCampos();
 
-            return false; // Esto evita que el formulario se envíe realmente
+            return false;
         }
 
         function limpiarCampos() {
@@ -98,10 +97,6 @@
             document.getElementById('price').value = '';
             document.getElementById('inventory').value = '';
             document.getElementById('imagen').value = '';
-        }
-
-        function mostrarNotificacion(mensaje) {
-            alert(mensaje);
         }
     </script>
 </body>
