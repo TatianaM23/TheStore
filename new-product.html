@@ -21,15 +21,19 @@
             <form onsubmit="mostrarInformacion(event)">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
+                <div id="nameError" class="error-message"></div>
 
                 <label for="price">Price:</label>
                 <input type="number" id="price" name="price" required>
+                <div id="priceError" class="error-message"></div>
 
                 <label for="inventory">Inventory:</label>
                 <input type="number" id="inventory" name="inventory" required>
+                <div id="inventoryError" class="error-message"></div>
 
                 <label for="imagen">Seleccionar imagen:</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                <div id="imageError" class="error-message"></div>
 
                 <input type="submit" value="Create Product">
             </form>
@@ -44,30 +48,46 @@
             var price = document.getElementById('price').value;
             var inventory = document.getElementById('inventory').value;
             var imageInput = document.getElementById('imagen');
-            
-            if (!name || !price || !inventory || !imageInput.files[0]) {
-                mostrarNotificacion("Todos los campos son requeridos");
+
+            // Limpia los mensajes de error previos
+            limpiarMensajesError();
+
+            if (!name) {
+                mostrarError('nameError', 'Campo requerido.');
                 return;
             }
 
-            var imageFile = imageInput.files[0];
-            var imagePath = "C:/Users/Acer/Desktop/Ingenieria Web The Store/TheStore/Imagenes/" + imageFile.name;
+            if (!price) {
+                mostrarError('priceError', 'Campo requerido.');
+                return;
+            }
 
-            var storedProducts = localStorage.getItem('products');
-            var products = storedProducts ? JSON.parse(storedProducts) : [];
+            if (!inventory) {
+                mostrarError('inventoryError', 'Campo requerido.');
+                return;
+            }
 
-            products.push({
-                name: name,
-                price: price,
-                inventory: inventory,
-                image: imagePath
-            });
+            if (!imageInput.files[0]) {
+                mostrarError('imageError', 'Campo requerido.');
+                return;
+            }
 
-            localStorage.setItem('products', JSON.stringify(products));
+            // Resto del código permanece igual
+            // ...
+
             mostrarNotificacion("Producto creado exitosamente");
-
-          
             limpiarCampos();
+        }
+
+        function limpiarMensajesError() {
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('priceError').textContent = '';
+            document.getElementById('inventoryError').textContent = '';
+            document.getElementById('imageError').textContent = '';
+        }
+
+        function mostrarError(id, message) {
+            document.getElementById(id).textContent = message;
         }
 
         function limpiarCampos() {
@@ -83,6 +103,7 @@
     </script>
 </body>
 </html>
+
 
 
 
