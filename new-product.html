@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Product</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .error-message {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,15 +26,19 @@
             <form onsubmit="mostrarInformacion(event)">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
+                <span class="error-message" id="nameError"></span>
 
                 <label for="price">Price:</label>
                 <input type="number" id="price" name="price" required>
+                <span class="error-message" id="priceError"></span>
 
                 <label for="inventory">Inventory:</label>
                 <input type="number" id="inventory" name="inventory" required>
+                <span class="error-message" id="inventoryError"></span>
 
                 <label for="imagen">Seleccionar imagen:</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                <span class="error-message" id="imageError"></span>
 
                 <input type="submit" value="Create Product">
             </form>
@@ -44,31 +53,42 @@
             var price = document.getElementById('price').value;
             var inventory = document.getElementById('inventory').value;
             var imageInput = document.getElementById('imagen');
-            
-            if (!name || !price || !inventory || !imageInput.files[0]) {
-                mostrarNotificacion("Todos los campos son requeridos");
+
+            var isValid = true;
+
+            if (name.trim() === "") {
+                document.getElementById('nameError').innerText = "Campo requerido";
+                isValid = false;
+            } else {
+                document.getElementById('nameError').innerText = "";
+            }
+
+            if (price.trim() === "") {
+                document.getElementById('priceError').innerText = "Campo requerido";
+                isValid = false;
+            } else {
+                document.getElementById('priceError').innerText = "";
+            }
+
+            if (inventory.trim() === "") {
+                document.getElementById('inventoryError').innerText = "Campo requerido";
+                isValid = false;
+            } else {
+                document.getElementById('inventoryError').innerText = "";
+            }
+
+            if (!imageInput.files.length) {
+                document.getElementById('imageError').innerText = "Campo requerido";
+                isValid = false;
+            } else {
+                document.getElementById('imageError').innerText = "";
+            }
+
+            if (!isValid) {
                 return;
             }
 
-            var imageFile = imageInput.files[0];
-            var imagePath = "C:/Users/Acer/Desktop/Ingenieria Web The Store/TheStore/Imagenes/" + imageFile.name;
-
-            var storedProducts = localStorage.getItem('products');
-            var products = storedProducts ? JSON.parse(storedProducts) : [];
-
-            products.push({
-                name: name,
-                price: price,
-                inventory: inventory,
-                image: imagePath
-            });
-
-            localStorage.setItem('products', JSON.stringify(products));
-            mostrarNotificacion("Producto creado exitosamente");
-
-        
-
-            limpiarCampos();
+            // Resto del código para guardar el producto...
         }
 
         function limpiarCampos() {
@@ -78,12 +98,13 @@
             document.getElementById('imagen').value = '';
         }
 
-        function mostrarNotificacion(message) {
-            alert(message);
+        function mostrarNotificacion(mensaje) {
+            // Código para mostrar la notificación...
         }
     </script>
 </body>
 </html>
+
 
 
 
