@@ -32,11 +32,7 @@
     <section>
         <div class="contenedor" id="result"></div>
     </section>
-    <script>
-       
-        var imageUrl = "https://static.wixstatic.com/media/bba051_1eed597cb6084ceea73dd18d14ec3557~mv2.png";
-        console.log("https://static.wixstatic.com/media/bba051_1eed597cb6084ceea73dd18d14ec3557~mv2.png", imageUrl);
-    </script>
+  
     <script>
         var storedProducts = localStorage.getItem('products');
         var products = storedProducts ? JSON.parse(storedProducts) : [];
@@ -54,7 +50,7 @@
                         <p><strong>Name:</strong> ${products[i].name}</p>
                         <p><strong>Price:</strong> ${products[i].price}</p>
                         <p><strong>Inventory:</strong> ${products[i].inventory}</p>
-                        <p><strong>Imagen:</strong> <img src="C:/Users/Acer/Desktop/Ingenieria Web The Store/TheStore/Imagenes/${products[i].image}" alt="Imagen del Producto"></p>
+                        <p><strong>Imagen:</strong>  </p> /*aqui se supone q va una imagen
 
 
                         <input type="submit" value="Eliminar" onclick="eliminarProducto(${i})">
