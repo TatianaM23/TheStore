@@ -45,11 +45,7 @@
             var inventory = document.getElementById('inventory').value;
             var imageInput = document.getElementById('imagen');
             
-            if (!name || !price || !inventory || !imageInput.files[0]) {
-                mostrarNotificacion("Todos los campos son requeridos");
-                return;
-            }
-
+            
             var imageFile = imageInput.files[0];
             var imagePath = "C:/Users/Acer/Desktop/Ingenieria Web The Store/TheStore/Imagenes/" + imageFile.name;
 
@@ -66,8 +62,7 @@
             localStorage.setItem('products', JSON.stringify(products));
             mostrarNotificacion("Producto creado exitosamente");
 
-            // Aquí podrías guardar la imagen en tu servidor usando tecnologías del lado del servidor como Node.js, PHP, etc.
-            // Además, asegúrate de tener permisos para escribir en la carpeta especificada en el servidor.
+        
 
             limpiarCampos();
         }
@@ -79,9 +74,7 @@
             document.getElementById('imagen').value = '';
         }
 
-        function mostrarNotificacion(message) {
-            alert(message);
-        }
+        
     </script>
 </body>
 </html>
