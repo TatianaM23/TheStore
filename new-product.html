@@ -18,7 +18,7 @@
     </ul>
     <section>
         <div class="contenedor"> 
-            <form onsubmit="mostrarInformacion(event)">
+            <form onsubmit="mostrarInformacion(event)" enctype="multipart/form-data">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
 
@@ -32,6 +32,9 @@
                 <input type="file" id="imagen" name="imagen" accept="imagen" required>
 
                 <input type="submit" value="Create Product">
+
+                
+
             </form>
         </div>
     </section>
